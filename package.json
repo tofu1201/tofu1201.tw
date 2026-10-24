@@ -1,0 +1,14 @@
+{
+  "name": "tofu-personal-site",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Tofu Chen 的一頁式個人品牌網站",
+  "engines": { "node": ">=22" },
+  "scripts": {
+    "dev": "node scripts/dev.mjs",
+    "build": "node scripts/build.mjs",
+    "preview": "node scripts/serve.mjs --preview",
+    "assets": "node scripts/generate-social.mjs"
+  }
+}
