@@ -58,7 +58,17 @@ export const profile = {
   ],
   // 友站資料填入後會自動顯示於活動下方；每筆可提供 Logo 與簡短說明。
   friends: [
-    // { name: '友站名稱', role: '簡短說明', logo: '/images/friends/example.svg', logoTheme: 'dark', initials: '友', url: 'https://example.com/' },
+    { name: 'Wuzuan', role: '吳鑽的個人網站', logo: '/images/friends/wuzuan.png', logoTheme: 'dark', initials: 'W', url: 'https://wuzuantw.com/' },
+    { name: 'sangege', role: '三甲甲的網站', logo: '/images/friends/sangege.png', logoTheme: 'dark', initials: 's', url: 'https://sange.ge/' },
+    { name: 'Godwhite', role: '神白的個人網站', logo: '/images/friends/godwhite.webp', logoTheme: 'dark', initials: 'G', url: 'https://godwhite.com/' },
+    { name: '企鵝', role: '熱衷於伺服器運維的國三學生', logo: '/images/friends/penguin.webp', logoTheme: 'light', initials: '企', url: 'https://xn--hoq.tw/' },
+    { name: 'Leinuo', role: '一個小男娘的網站', logo: '/images/friends/leinuo.webp', logoTheme: 'light', initials: 'L', url: 'https://leinuoawa.xyz/' },
+    { name: 'Asteroid', role: 'AD', logo: '/images/friends/asteroid.webp', logoTheme: 'light', initials: 'A', url: 'https://asteroid.tw/' },
+    { name: '十月', role: 'October', logo: '/images/friends/october.webp', logoTheme: 'dark', initials: '十', url: 'https://87x.uk' },
+    { name: 'LongTai', role: '學生／討厭開發的開發者', logo: '/images/friends/longtai.png', logoTheme: 'dark', initials: 'L', url: 'https://longtai.org/' },
+    { name: '夏川桃源', role: '只是個什麼都會一點的人類而已', logo: '/images/friends/summer.png', logoTheme: 'dark', initials: '夏', url: 'https://natsukawataoyuan.com/' },
+    { name: '烤鴨', role: '來自新竹的好吃的烤鴨', logo: '/images/friends/roast-duck.jpg', logoTheme: 'light', initials: '烤', url: 'https://www.gdtw.qzz.io/' },
+    { name: 'jiaoyue', role: '焦月，一個獸控的網站', logo: '/images/friends/jiaoyue.jpg', logoTheme: 'light', initials: 'j', url: 'https://jiaoyue.gay/' },
   ],
 };
 

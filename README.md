@@ -47,7 +47,7 @@ npm run dev -- --host 0.0.0.0 --port 4321
 - `skills`：技術資料，用於 SEO 結構化資料與公開個人資料。
 - `teams`：團隊名稱、`role` 職稱、`logo` 路徑及選填的 `url`。Logo 放在 `public/images/`；尚未提供時顯示 `initials`。
 - `activities`：活動名稱、`roleLabel` 參與身分、Logo 與官方網址。
-- `friends`：友站名稱、簡短說明、Logo 與網址；尚未填入時會顯示待補充提示。
+- `friends`：友站名稱、簡短說明、Logo 與網址；目前資料取自公開友站清單，圖像來源與核對紀錄見 `public/images/friends/SOURCES.md`。
 - `socials`：Discord、Instagram、Mail 與 LinkedIn 連結。
 - `contact.website`：正式網域，目前為 `https://tofu1201.tw`。
 
@@ -152,5 +152,6 @@ scripts/
 - [形象照來源與調整紀錄](public/images/PORTRAIT-SOURCE.md)
 - [團隊 Logo 來源](public/images/teams/SOURCES.md)
 - [活動圖像來源與年份核對紀錄](public/images/activities/SOURCES.md)
+- [友站資料與圖像來源](public/images/friends/SOURCES.md)
 
-團隊與活動名稱、Logo 及商標的權利歸各權利人所有。照片授權適用於該照片及其衍生圖像，不代表網站程式碼或其他素材採用相同授權。
+團隊、活動與友站名稱、Logo 及商標的權利歸各權利人所有。照片授權適用於該照片及其衍生圖像，不代表網站程式碼或其他素材採用相同授權。
