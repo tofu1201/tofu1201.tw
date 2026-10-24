@@ -2,7 +2,7 @@
 
 Tofu Chen 的個人網站，介紹學生開發者與新竹縣兒少代表的身分、任職團隊及技術社群參與經歷。
 
-[個人網站](https://tofu1201.tw) · [聯繫信箱](mailto:tofu@tofu1201.tw)
+[個人網站](https://tofu1201.tw) · [Cloudflare Pages](https://tofu1201-tw.pages.dev) · [聯繫信箱](mailto:tofu@tofu1201.tw)
 
 [![Tofu Chen 個人網站分享預覽](public/og-image.png)](https://tofu1201.tw)
 
@@ -79,6 +79,7 @@ npm run preview -- --port 4322
 | 設定 | 值 |
 | --- | --- |
 | Pages 專案名稱 | `tofu1201-tw` |
+| Pages 網址 | https://tofu1201-tw.pages.dev |
 | 正式分支 | `main` |
 | 框架預設 | None |
 | 根目錄 | 儲存庫根目錄 |
@@ -119,6 +120,8 @@ npm run build
 ## 專案結構
 
 ```text
+.node-version           Cloudflare 建置使用的 Node.js 版本
+wrangler.jsonc          Cloudflare Pages 專案與輸出目錄設定
 src/
   data/profile.mjs       個人資料、團隊、活動與社群連結
   components/icons.mjs  SVG 圖示
