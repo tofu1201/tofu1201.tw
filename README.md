@@ -122,7 +122,7 @@ npm run build
 
 ## 專案結構
 
-背景效果由 `public/assets/background.js` 與 `public/assets/site.css` 控制。粒子動畫最多每秒 30 格，手機使用較少粒子，切換至其他分頁時自動暫停。右下角按鈕可暫停或播放背景，選擇會儲存於本機；未啟用 JavaScript 或偏好減少動態效果時，顯示靜態背景。
+背景效果由 `public/assets/background.js` 與 `public/assets/site.css` 控制，包含藍色流動光暈、網格柔光與粒子連線，光點沿連線移動，桌機滑鼠靠近時也會產生光暈與粒子互動。粒子動畫最多每秒 30 格，手機使用較少粒子，切換至其他分頁時自動暫停。右下角按鈕可暫停或播放背景，選擇會儲存於本機；未啟用 JavaScript 或偏好減少動態效果時，顯示靜態背景。
 
 ```text
 .node-version           Cloudflare 建置使用的 Node.js 版本

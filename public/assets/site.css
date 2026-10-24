@@ -32,12 +32,13 @@ svg { display: block; flex-shrink: 0; }
 /* Decorative motion stays behind the content and never receives pointer input. */
 .site-background { --grid-size: 80px; position: fixed; inset: 0; z-index: -1; overflow: hidden; pointer-events: none; contain: strict; background: var(--bg); }
 .ambient-glow { position: absolute; width: clamp(520px, 76vw, 1100px); aspect-ratio: 1; border-radius: 50%; will-change: transform; animation-play-state: paused; }
-.ambient-glow-one { left: -26%; top: -40%; background: radial-gradient(ellipse at center, #9bb0ce17, #8596ae06 42%, transparent 70%); animation: ambient-drift-one 26s ease-in-out infinite alternate paused; }
-.ambient-glow-two { right: -26%; bottom: -48%; background: radial-gradient(ellipse at center, #b8bfce12, #8b9bbd06 42%, transparent 70%); animation: ambient-drift-two 32s ease-in-out infinite alternate paused; }
+.ambient-glow-one { left: -24%; top: -30%; background: radial-gradient(ellipse at center, #559ce845, #598ac519 42%, transparent 70%); animation: ambient-drift-one 14s ease-in-out -3s infinite alternate paused; }
+.ambient-glow-two { right: -24%; bottom: -40%; background: radial-gradient(ellipse at center, #7c9ee333, #7a9fd410 42%, transparent 70%); animation: ambient-drift-two 18s ease-in-out -7s infinite alternate paused; }
 .background-grid { position: absolute; inset: 0; mask-image: radial-gradient(ellipse at 50% 38%, transparent 8%, #000b 80%); -webkit-mask-image: radial-gradient(ellipse at 50% 38%, transparent 8%, #000b 80%); }
-.background-grid::before { content: ""; position: absolute; inset: calc(-1 * var(--grid-size)); background-image: linear-gradient(#b2c1dd09 1px, transparent 1px), linear-gradient(90deg, #b2c1dd09 1px, transparent 1px); background-size: var(--grid-size) var(--grid-size); animation: grid-drift 42s linear infinite paused; }
-.background-particles { position: absolute; inset: 0; width: 100%; height: 100%; opacity: .8; mask-image: radial-gradient(ellipse at 50% 42%, #0006 12%, #000 85%); -webkit-mask-image: radial-gradient(ellipse at 50% 42%, #0006 12%, #000 85%); }
-.site-background.is-running .ambient-glow, .site-background.is-running .background-grid::before { animation-play-state: running; }
+.background-grid::before { content: ""; position: absolute; inset: calc(-1 * var(--grid-size)); background-image: linear-gradient(#b2c1dd11 1px, transparent 1px), linear-gradient(90deg, #b2c1dd11 1px, transparent 1px); background-size: var(--grid-size) var(--grid-size); animation: grid-drift 24s linear infinite paused; }
+.background-grid::after { content: ""; position: absolute; inset: -40% auto; left: -45%; width: 45%; background: linear-gradient(90deg, transparent 12%, #79b7ff03 35%, #81ceff16 50%, #79b7ff03 65%, transparent 88%); animation: light-sweep 10s linear -2.5s infinite paused; }
+.background-particles { position: absolute; inset: 0; width: 100%; height: 100%; opacity: .95; mask-image: radial-gradient(ellipse at 50% 42%, #0007 12%, #000 85%); -webkit-mask-image: radial-gradient(ellipse at 50% 42%, #0007 12%, #000 85%); }
+.site-background.is-running .ambient-glow, .site-background.is-running .background-grid::before, .site-background.is-running .background-grid::after { animation-play-state: running; }
 .motion-toggle { position: fixed; right: 22px; bottom: 22px; z-index: 80; display: grid; place-items: center; width: 40px; height: 40px; padding: 0; border: 1px solid #ffffff1f; border-radius: 50%; background: #111e; color: #999; transition: color .2s, border-color .2s, background .2s; }
 .motion-toggle[hidden] { display: none; }
 .motion-toggle:hover { color: #eee; border-color: #ffffff50; background: #1a1a1a; }
@@ -46,14 +47,18 @@ svg { display: block; flex-shrink: 0; }
 .motion-toggle[data-paused="true"] .motion-play { display: block; }
 @keyframes ambient-drift-one {
   from { transform: translate3d(0, 0, 0) scale(1); }
-  to { transform: translate3d(18vw, 17vh, 0) scale(1.15); }
+  to { transform: translate3d(30vw, 26vh, 0) scale(1.18); }
 }
 @keyframes ambient-drift-two {
   from { transform: translate3d(0, 0, 0) scale(1); }
-  to { transform: translate3d(-15vw, -18vh, 0) scale(1.12); }
+  to { transform: translate3d(-28vw, -26vh, 0) scale(1.16); }
 }
 @keyframes grid-drift {
   to { transform: translate3d(var(--grid-size), var(--grid-size), 0); }
+}
+@keyframes light-sweep {
+  from { transform: translate3d(0, 0, 0) skewX(-18deg); }
+  to { transform: translate3d(340%, 0, 0) skewX(-18deg); }
 }
 
 /* Navigation */
@@ -170,8 +175,8 @@ h2 { font-size: 23px; font-weight: 500; letter-spacing: 1px; line-height: 1.6; }
   :root { scroll-padding-top: 96px; }
   .site-background { --grid-size: 96px; }
   .ambient-glow { width: 580px; }
-  .ambient-glow-one { left: -100%; top: -15%; }
-  .ambient-glow-two { right: -95%; bottom: -25%; }
+  .ambient-glow-one { left: -85%; top: -8%; }
+  .ambient-glow-two { right: -85%; bottom: -20%; }
   .motion-toggle { width: 44px; height: 44px; right: 14px; bottom: 14px; }
   .container { width: calc(100% - 48px); }
   .header-inner { min-height: 72px; position: relative; flex-wrap: wrap; }
