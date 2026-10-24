@@ -2,7 +2,7 @@
 export const profile = {
   name: 'Tofu Chen',
   nickname: 'Tofu',
-  greeting: '哈囉！我是 Tofu 👋',
+  greeting: '哈囉！我是',
   labels: ['學生開發者', '新竹縣兒少代表'],
   // 搜尋與社群分享摘要。
   summary: 'Tofu Chen（Tofu），來自台灣的學生開發者與新竹縣兒少諮詢代表。使用 Python、HTML、CSS，熱衷軟體開發、伺服器架設與開源專案，也關注公共事務、教育議題及兒少權益。',
@@ -48,13 +48,13 @@ export const profile = {
     { id: 'cybersec-2026', name: 'CYBERSEC 2026', role: 'Attendee', roleLabel: '會眾', logo: '/images/activities/cybersec-2026.png', logoTheme: 'dark', initials: 'CS', url: 'https://cybersec.ithome.com.tw/2026/' },
     { id: 'internet-week-2026', name: 'Internet Week 2026', role: 'Attendee', roleLabel: '會眾', logo: '/images/activities/internet-week-2026.svg', logoTheme: 'dark', initials: 'IW', url: 'https://internetweek.tw/2026/' },
     { id: 'twnog-7', name: 'TWNOG 7', role: 'Attendee', roleLabel: '會眾', logo: '/images/activities/twnog-7.png', logoTheme: 'light', initials: 'TW', url: 'https://2026.twnog.net/' },
-    { id: 'ipv6-workshop-2026', name: 'IPv6 Workshop 2026', role: 'Participant', roleLabel: '參與者', logo: '/images/activities/ipv6-workshop-2026.svg', logoTheme: 'dark', initials: 'v6', url: 'https://workshop.twnog.net/' },
+    { id: 'ipv6-workshop-2026', name: 'IPv6 Workshop 2026', role: 'Participant', roleLabel: '學員', logo: '/images/activities/ipv6-workshop-2026.svg', logoTheme: 'dark', initials: 'v6', url: 'https://workshop.twnog.net/' },
     { id: 'g0v-summit-2026', name: 'g0v summit 2026', role: 'Attendee', roleLabel: '會眾', logo: '/images/activities/g0v-summit-2026.svg', logoTheme: 'dark', initials: 'g0v', url: 'https://summit.g0v.tw/2026/' },
-    { id: 'computex-2026', name: 'COMPUTEX 2026', role: 'Professional Visitor', roleLabel: '專業參觀者', logo: '/images/activities/computex.png', logoTheme: 'light', initials: 'CX', url: 'https://www.computextaipei.com.tw/' },
-    { id: 'sitcon-camp-2026', name: 'SITCON CAMP 2026', role: 'Camper', roleLabel: '營隊學員', logo: '/images/activities/sitcon-camp-2026.svg', logoTheme: 'dark', initials: 'SC', url: 'https://sitcon.camp/2026/' },
+    { id: 'computex-2026', name: 'COMPUTEX 2026', role: 'Professional Visitor', roleLabel: '國內專業人士', logo: '/images/activities/computex.png', logoTheme: 'light', initials: 'CX', url: 'https://www.computextaipei.com.tw/' },
+    { id: 'sitcon-camp-2026', name: 'SITCON CAMP 2026', role: 'Camper', roleLabel: '學員', logo: '/images/activities/sitcon-camp-2026.svg', logoTheme: 'dark', initials: 'SC', url: 'https://sitcon.camp/2026/' },
     { id: 'coscup-2026', name: 'COSCUP 2026', role: 'Attendee', roleLabel: '會眾', logo: '/images/activities/coscup-2026.svg', logoTheme: 'dark', initials: 'CO', url: 'https://coscup.org/2026/' },
     { id: 'futuremode-2026', name: 'FUTUREMODE 2026', role: 'Developer', roleLabel: '開發者', logo: '/images/activities/futuremode-2026.png', logoTheme: 'dark', initials: 'FM', url: 'https://www.futuremode.xyz/' },
-    { id: 'pycon-2026', name: 'PyCon 2026', role: 'Event Staff', roleLabel: '工作人員', logo: '/images/activities/pycon-2026.svg', logoTheme: 'dark', initials: 'Py', url: 'https://tw.pycon.org/2026/' },
+    { id: 'pycon-2026', name: 'PyCon 2026', role: 'Event Staff', roleLabel: '場務組', logo: '/images/activities/pycon-2026.svg', logoTheme: 'dark', initials: 'Py', url: 'https://tw.pycon.org/2026/' },
   ],
 };
 
