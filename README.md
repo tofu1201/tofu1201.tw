@@ -8,7 +8,7 @@ Tofu Chen 的個人網站，介紹學生開發者與新竹縣兒少代表的身�
 
 ## 專案特色
 
-- 黑色的一頁式設計，包含首頁、團隊、活動與聯繫。
+- 黑色的一頁式設計，包含首頁、團隊、活動、友站與聯繫。
 - 圓形形象照與自介整合於主視覺，支援桌機與手機瀏覽。
 - 流動光暈、細緻網格與粒子連線背景，可隨時暫停，並配合系統的減少動態效果設定。
 - 內容集中管理，直接修改設定檔即可更新個人資料。
@@ -47,6 +47,7 @@ npm run dev -- --host 0.0.0.0 --port 4321
 - `skills`：技術資料，用於 SEO 結構化資料與公開個人資料。
 - `teams`：團隊名稱、`role` 職稱、`logo` 路徑及選填的 `url`。Logo 放在 `public/images/`；尚未提供時顯示 `initials`。
 - `activities`：活動名稱、`roleLabel` 參與身分、Logo 與官方網址。
+- `friends`：友站名稱、簡短說明、Logo 與網址；尚未填入時會顯示待補充提示。
 - `socials`：Discord、Instagram、Mail 與 LinkedIn 連結。
 - `contact.website`：正式網域，目前為 `https://tofu1201.tw`。
 
@@ -128,7 +129,7 @@ npm run build
 .node-version           Cloudflare 建置使用的 Node.js 版本
 wrangler.jsonc          Cloudflare Pages 專案與輸出目錄設定
 src/
-  data/profile.mjs       個人資料、團隊、活動與社群連結
+  data/profile.mjs       個人資料、團隊、活動、友站與社群連結
   components/icons.mjs  SVG 圖示
   page.mjs              頁面結構與 JSON-LD
   metadata.mjs          robots、sitemap 與公開個人資料

@@ -56,6 +56,10 @@ export const profile = {
     { id: 'futuremode-2026', name: 'FUTUREMODE 2026', role: 'Developer', roleLabel: '開發者', logo: '/images/activities/futuremode-2026.png', logoTheme: 'dark', initials: 'FM', url: 'https://www.futuremode.xyz/' },
     { id: 'pycon-2026', name: 'PyCon 2026', role: 'Event Staff', roleLabel: '場務組', logo: '/images/activities/pycon-2026.svg', logoTheme: 'dark', initials: 'Py', url: 'https://tw.pycon.org/2026/' },
   ],
+  // 友站資料填入後會自動顯示於活動下方；每筆可提供 Logo 與簡短說明。
+  friends: [
+    // { name: '友站名稱', role: '簡短說明', logo: '/images/friends/example.svg', logoTheme: 'dark', initials: '友', url: 'https://example.com/' },
+  ],
 };
 
 export const site = {

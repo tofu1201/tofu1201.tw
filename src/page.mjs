@@ -4,7 +4,7 @@ import { icon } from './components/icons.mjs';
 export const escapeHtml = (value) => String(value).replace(/[&<>"']/g, (char) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[char]);
 const e = escapeHtml;
 const canonical = new URL(profile.contact.website).href;
-const navigation = [['home', '首頁'], ['teams', '團隊'], ['activities', '活動'], ['contact', '聯繫']];
+const navigation = [['home', '首頁'], ['teams', '團隊'], ['activities', '活動'], ['friends', '友站'], ['contact', '聯繫']];
 
 function identityCard(item, kind) {
   const logo = `<span class="identity-logo logo-${e(item.logoTheme)}">${item.logo
@@ -128,6 +128,10 @@ export function renderPage() {
 
     <section id="activities" class="section" aria-labelledby="activities-title">
       <div class="container section-grid"><div class="section-heading"><h2 id="activities-title">活動</h2><span class="section-year">2026</span></div><div class="activities-grid">${profile.activities.map((activity) => identityCard(activity, 'activity')).join('')}</div></div>
+    </section>
+
+    <section id="friends" class="section" aria-labelledby="friends-title">
+      <div class="container section-grid"><h2 id="friends-title">友站</h2><div class="friends-grid">${profile.friends.length ? profile.friends.map((friend) => identityCard(friend, 'friend')).join('') : '<p class="empty-state">友站資料即將更新</p>'}</div></div>
     </section>
 
     <section id="contact" class="section contact" aria-labelledby="contact-title">
