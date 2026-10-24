@@ -86,8 +86,15 @@ export function renderPage() {
   <link rel="stylesheet" href="/assets/site.css">
   <script type="application/ld+json">${JSON.stringify(graph).replace(/</g, '\\u003c')}</script>
   <script src="/assets/main.js" defer></script>
+  <script src="/assets/background.js" defer></script>
 </head>
 <body>
+  <div class="site-background" aria-hidden="true">
+    <div class="ambient-glow ambient-glow-one"></div>
+    <div class="ambient-glow ambient-glow-two"></div>
+    <div class="background-grid"></div>
+    <canvas class="background-particles"></canvas>
+  </div>
   <a class="skip-link" href="#main">跳至主要內容</a>
   <header class="site-header">
     <div class="container header-inner">
@@ -134,6 +141,7 @@ export function renderPage() {
   </main>
 
   <footer class="site-footer container"><div class="footer-info"><span>© ${new Date().getFullYear()} ${e(profile.name)}</span>${profile.portrait.src && profile.portrait.credit ? `<span class="photo-credit" title="照片經裁切、縮小並轉為 WebP">“<a href="${e(profile.portrait.credit.url)}" target="_blank" rel="noopener noreferrer">${e(profile.portrait.credit.title || profile.portrait.alt)}</a>” by <a href="${e(profile.portrait.credit.creatorUrl || profile.portrait.credit.url)}" target="_blank" rel="noopener noreferrer">${e(profile.portrait.credit.name)}</a>, <a href="${e(profile.portrait.credit.licenseUrl)}" target="_blank" rel="noopener noreferrer">${e(profile.portrait.credit.licenseName)}</a></span>` : ''}</div><a href="#home" aria-label="回到首頁">${icon('up')}</a></footer>
+  <button class="motion-toggle" type="button" data-paused="false" aria-label="暫停背景動畫" title="暫停背景動畫" hidden>${icon('pause', 'motion-pause')}${icon('play', 'motion-play')}</button>
 </body>
 </html>`;
 }
