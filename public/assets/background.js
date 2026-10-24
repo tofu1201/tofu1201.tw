@@ -22,11 +22,11 @@
   let elapsed = 0;
 
   const drawLight = (x, y, radius, alpha) => {
-    context.fillStyle = `rgba(123, 190, 255, ${alpha * .15})`;
+    context.fillStyle = `rgba(255, 255, 255, ${alpha * .15})`;
     context.beginPath();
     context.arc(x, y, radius * 3.5, 0, Math.PI * 2);
     context.fill();
-    context.fillStyle = `rgba(203, 231, 255, ${alpha})`;
+    context.fillStyle = `rgba(255, 255, 255, ${alpha})`;
     context.beginPath();
     context.arc(x, y, radius, 0, Math.PI * 2);
     context.fill();
@@ -39,8 +39,8 @@
 
     if (pointer.active) {
       const light = context.createRadialGradient(pointer.x, pointer.y, 0, pointer.x, pointer.y, 210);
-      light.addColorStop(0, 'rgba(111, 177, 255, .09)');
-      light.addColorStop(1, 'rgba(111, 177, 255, 0)');
+      light.addColorStop(0, 'rgba(255, 255, 255, .08)');
+      light.addColorStop(1, 'rgba(255, 255, 255, 0)');
       context.fillStyle = light;
       context.fillRect(pointer.x - 210, pointer.y - 210, 420, 420);
     }
@@ -74,7 +74,7 @@
         const squaredDistance = dx * dx + dy * dy;
         if (squaredDistance >= reach * reach) continue;
         const strength = 1 - Math.sqrt(squaredDistance) / reach;
-        context.strokeStyle = `rgba(139, 191, 243, ${strength * .34})`;
+        context.strokeStyle = `rgba(225, 225, 225, ${strength * .34})`;
         context.beginPath();
         context.moveTo(particle.x, particle.y);
         context.lineTo(other.x, other.y);
