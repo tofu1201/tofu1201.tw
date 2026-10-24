@@ -74,18 +74,34 @@ npm run preview -- --port 4322
 
 ## 部署
 
-可將 GitHub 儲存庫連接至 Cloudflare Pages、Netlify 或其他靜態網站主機，使用以下設定：
+使用 **Cloudflare Pages**，連接 GitHub 儲存庫 [`tofu1201/tofu1201.tw`](https://github.com/tofu1201/tofu1201.tw)。正式部署設定如下：
 
 | 設定 | 值 |
 | --- | --- |
-| Node.js 版本 | 22 以上 |
+| Pages 專案名稱 | `tofu1201-tw` |
+| 正式分支 | `main` |
+| 框架預設 | None |
+| 根目錄 | 儲存庫根目錄 |
+| Node.js 版本 | 22，由 `.node-version` 指定 |
 | 建置指令 | `npm run build` |
 | 輸出目錄 | `dist` |
 | 環境變數 | 不需要 |
 
-也可直接將 `dist/` 內的檔案上傳至靜態主機。`dist/` 已加入 `.gitignore`，不會提交至版本庫。本機預覽伺服器僅供開發與驗證使用。
+在 Cloudflare 控制台的 **Workers & Pages → Create application → Pages → Connect to Git** 選擇這個儲存庫，套用上表設定即可建立專案。私人儲存庫需要授權 Cloudflare 的 GitHub App 存取。
 
-正式網域設定於 `src/data/profile.mjs` 的 `contact.website`。使用其他網域時，請先修改此欄位，再重新建置，以更新 canonical、分享圖片網址與 sitemap。
+啟用 Git 整合後，推送至 `main` 會自動建置並更新正式網站，其他分支則產生預覽部署；建置結果可在 Cloudflare 專案的 Deployments 查看。
+
+若需要從本機手動部署，專案已提供 `wrangler.jsonc`：
+
+```sh
+npx --yes wrangler@4.152.0 login
+npm run build
+npx --yes wrangler@4.152.0 pages deploy dist --project-name tofu1201-tw --branch main
+```
+
+`dist/` 與 Wrangler 本機狀態已加入 `.gitignore`，不會提交至版本庫。本機預覽伺服器僅供開發與驗證使用。
+
+正式網域設定於 `src/data/profile.mjs` 的 `contact.website`，目前為 `https://tofu1201.tw`。綁定網域時，請在 Pages 專案的 **Custom domains** 新增網域，依控制台指示設定 DNS，並等待 HTTPS 憑證生效。使用其他正式網域時，請先修改 `contact.website`，再重新建置，以更新 canonical、分享圖片網址與 sitemap。
 
 ## SEO 與社群分享
 
