@@ -201,7 +201,8 @@ h2 { font-size: 23px; font-weight: 500; letter-spacing: 1px; line-height: 1.6; }
   .hero-portrait { width: min(46vw, 200px, 24svh); align-self: center; }
   .hero-portrait::before { inset: -9px; }
   .hero-about { margin-top: 24px; max-width: 520px; margin-inline: auto; }
-  .hero-about .biography { font-size: 14px; line-height: 1.95; text-align: left; }
+  .hero-about .biography { font-size: 14px; line-height: 1.95; text-align: center; }
+  .hero-about .biography p { margin-inline: auto; }
   .scroll-cue { bottom: 10px; }
   .scroll-cue::before { height: 16px; bottom: 35px; }
   .section > .container { padding-block: 48px; }
@@ -226,8 +227,9 @@ h2 { font-size: 23px; font-weight: 500; letter-spacing: 1px; line-height: 1.6; }
   .social-link { min-height: 62px; gap: 12px; }
   .social-link > .icon:first-child { width: 20px; height: 20px; }
   .contact > .container { padding-bottom: 52px; }
-  .site-footer { min-height: 76px; font-size: 10px; }
-  .footer-info { flex-direction: column; align-items: flex-start; gap: 4px; }
+  .site-footer { position: relative; justify-content: center; min-height: 76px; padding-inline: 48px; font-size: 10px; text-align: center; }
+  .footer-info { flex-direction: column; align-items: center; gap: 4px; }
+  .site-footer > a { position: absolute; right: 48px; top: 50%; transform: translateY(-50%); }
 }
 @media (max-width: 370px) {
   .container { width: calc(100% - 36px); }
