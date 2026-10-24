@@ -100,6 +100,8 @@ npm run build
 npx --yes wrangler@4.152.0 pages deploy dist --project-name tofu1201-tw --branch main
 ```
 
+若登入帳號可存取多個 Cloudflare 帳戶，手動部署時請選擇管理 `tofu1201.tw` 的帳戶。
+
 `dist/` 與 Wrangler 本機狀態已加入 `.gitignore`，不會提交至版本庫。本機預覽伺服器僅供開發與驗證使用。
 
 正式網域設定於 `src/data/profile.mjs` 的 `contact.website`，目前為 `https://tofu1201.tw`。綁定網域時，請在 Pages 專案的 **Custom domains** 新增網域，依控制台指示設定 DNS，並等待 HTTPS 憑證生效。使用其他正式網域時，請先修改 `contact.website`，再重新建置，以更新 canonical、分享圖片網址與 sitemap。
