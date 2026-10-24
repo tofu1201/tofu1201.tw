@@ -1,10 +1,25 @@
-# Tofu Chen 個人網站
+# Tofu Chen · tofu1201.tw
 
-黑色、簡潔的一頁式個人網站。主視覺以左側圓形頭像、右側招呼與姓名呈現，自介整合在首屏，下方依序為任職團隊、11 項活動與社群聯繫。導覽提供首頁、團隊、活動與聯繫。使用原生 HTML、CSS、JavaScript 和 Node.js，無第三方執行期依賴與外部字型請求。
+Tofu Chen 的個人網站，介紹學生開發者與新竹縣兒少代表的身分、任職團隊及技術社群參與經歷。
+
+[個人網站](https://tofu1201.tw) · [聯繫信箱](mailto:tofu@tofu1201.tw)
+
+[![Tofu Chen 個人網站分享預覽](public/og-image.png)](https://tofu1201.tw)
+
+## 專案特色
+
+- 黑色的一頁式設計，包含首頁、團隊、活動與聯繫。
+- 圓形形象照與自介整合於主視覺，支援桌機與手機瀏覽。
+- 內容集中管理，直接修改設定檔即可更新個人資料。
+- 使用原生 HTML、CSS、JavaScript 與 Node.js，無第三方執行期依賴。
+- 建置時產生完整 HTML 與 SEO 資料，關閉 JavaScript 仍可閱讀與導覽。
+- 支援鍵盤操作、跳至主要內容、手機選單及減少動態效果偏好。
+
+網站採靜態架構，無後台、資料庫或外部字型請求。
 
 ## 本機開發
 
-需要 Node.js 22 以上，不需安裝套件。
+需要 **Node.js 22 以上**，不需安裝套件。在專案根目錄執行：
 
 ```sh
 npm run dev
@@ -46,7 +61,7 @@ portrait: {
 
 `logoTheme: 'dark'` 使用深色底，`'light'` 使用淺色底；可依原始 Logo 的顏色選擇。活動圖像來自官方網站，部分使用官方品牌圖示，詳細來源與年份核對記錄在 `public/images/activities/SOURCES.md`。
 
-目前使用你提供的自介及 COSCUP Flickr 形象照，並已加入兩個團隊的 Logo 與連結。照片來源記錄在 `public/images/PORTRAIT-SOURCE.md`，團隊圖像來源記錄在 `public/images/teams/SOURCES.md`。網站沒有後台或資料庫，直接修改這份設定檔即可更新內容。
+團隊區塊包含 Hyper Group Network Ltd. 與班利小舖；社群聯繫提供 Discord、Instagram、Mail 與 LinkedIn。圖片均隨專案保存，瀏覽網站時不需向原始圖片平台請求。
 
 ## 正式建置
 
@@ -55,7 +70,22 @@ npm run build
 npm run preview -- --port 4322
 ```
 
-正式檔案在 `dist/`，可部署至 Cloudflare Pages、Netlify 或其他靜態網站主機。建置指令為 `npm run build`，輸出目錄為 `dist`。預覽伺服器供本機驗證使用。
+正式檔案輸出至 `dist/`，預覽網址為 `http://127.0.0.1:4322`。建置會重新產生整個輸出目錄，請修改 `src/` 或 `public/` 中的來源檔案。
+
+## 部署
+
+可將 GitHub 儲存庫連接至 Cloudflare Pages、Netlify 或其他靜態網站主機，使用以下設定：
+
+| 設定 | 值 |
+| --- | --- |
+| Node.js 版本 | 22 以上 |
+| 建置指令 | `npm run build` |
+| 輸出目錄 | `dist` |
+| 環境變數 | 不需要 |
+
+也可直接將 `dist/` 內的檔案上傳至靜態主機。`dist/` 已加入 `.gitignore`，不會提交至版本庫。本機預覽伺服器僅供開發與驗證使用。
+
+正式網域設定於 `src/data/profile.mjs` 的 `contact.website`。使用其他網域時，請先修改此欄位，再重新建置，以更新 canonical、分享圖片網址與 sitemap。
 
 ## SEO 與社群分享
 
@@ -70,11 +100,32 @@ npm run assets
 npm run build
 ```
 
-## 頁面與樣式
+## 專案結構
 
-- `src/page.mjs`：頁面結構與結構化資料。
-- `public/assets/site.css`：桌面、手機、列印與減少動態效果樣式。
-- `public/assets/main.js`：手機選單、目前所在章節與圖片載入失敗備援。
-- `scripts/generate-social.mjs`：分享預覽圖的版型。
+```text
+src/
+  data/profile.mjs       個人資料、團隊、活動與社群連結
+  components/icons.mjs  SVG 圖示
+  page.mjs              頁面結構與 JSON-LD
+  metadata.mjs          robots、sitemap 與公開個人資料
+  not-found.mjs         404 頁面
+public/
+  assets/               網站樣式與互動程式
+  images/               形象照、Logo 與來源紀錄
+  og-image.png          社群分享預覽圖
+scripts/
+  dev.mjs               開發模式
+  build.mjs             靜態網站建置
+  serve.mjs             本機預覽伺服器
+  generate-social.mjs   分享圖與 Apple 圖示產生器
+```
 
-支援鍵盤操作、跳至主要內容、手機選單 Escape 關閉、無 JavaScript 閱讀與導覽。
+## 圖片來源與授權
+
+形象照：[“_KA98892”](https://www.flickr.com/photos/coscup/55451327852/in/album-72177720335045157) by [COSCUP](https://www.flickr.com/photos/coscup/)，採用 [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/) 授權。網站使用的版本已裁切、縮小並轉為 WebP；相關圖像衍生檔案沿用相同授權，署名保留於頁尾。
+
+- [形象照來源與調整紀錄](public/images/PORTRAIT-SOURCE.md)
+- [團隊 Logo 來源](public/images/teams/SOURCES.md)
+- [活動圖像來源與年份核對紀錄](public/images/activities/SOURCES.md)
+
+團隊與活動名稱、Logo 及商標的權利歸各權利人所有。照片授權適用於該照片及其衍生圖像，不代表網站程式碼或其他素材採用相同授權。
