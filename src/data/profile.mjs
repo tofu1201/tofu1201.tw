@@ -36,6 +36,7 @@ export const profile = {
   teams: [
     { name: 'Hyper Group Network Ltd.', role: '客戶服務團隊', logo: '/images/teams/hyper-group.png', logoTheme: 'light', initials: 'HG', url: 'https://hn.hypernology.com/' },
     { name: '班利小舖', role: '客服', logo: '/images/teams/banli.webp', logoTheme: 'light', initials: '班', url: 'https://discord.gg/wVnt4FMThn' },
+    { name: '臺灣學生自治促進會', role: '理事', logo: '/images/teams/tsapa.png', logoTheme: 'dark', initials: 'TS', url: 'https://sites.google.com/view/tsapa-tw/%E9%A6%96%E9%A0%81' },
   ],
   socials: [
     { name: 'Discord', icon: 'discord', url: 'https://discord.gg/PCDEd5VuxV' },

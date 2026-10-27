@@ -17,3 +17,10 @@
 - 原始圖像：https://images-ext-1.discordapp.net/external/qOHva00QfxN5dAfW_lcOEspRwWNhoB-JWXrkMnwpJTo/%3Fsize%3D512/https/cdn.discordapp.com/icons/1269889738282893322/8307ab16db76f4b8be1a1dc36d28b361.png?format=webp&quality=lossless&width=192&height=192
 - 本機檔案：`banli.webp`（192 × 192）
 - 處理：保留連結提供的原始 WebP 圖像。
+
+## 臺灣學生自治促進會（TSAPA）
+
+- 官方網站：https://sites.google.com/view/tsapa-tw/%E9%A6%96%E9%A0%81
+- 官方圖像：該 Google Sites 網站的 `rel="icon"` 圖像。
+- 本機檔案：`tsapa.png`（1024 × 1024）
+- 處理：保留官方 PNG 圖像，隨網站本機提供。
