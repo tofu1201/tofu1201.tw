@@ -18,12 +18,14 @@ function identityCard(item, kind) {
 
 export function renderPage() {
   const sameAs = profile.socials.filter((social) => ['instagram', 'linkedin'].includes(social.icon)).map((social) => social.url).filter((url) => /^https:\/\//.test(url));
+  const copyrightNotice = profile.portrait.credit ? `© ${profile.portrait.credit.name}；${profile.portrait.credit.licenseName}` : null;
   const portraitImage = profile.portrait.src ? {
     '@type': 'ImageObject', url: new URL(profile.portrait.src, canonical).href,
     contentUrl: new URL(profile.portrait.src, canonical).href, caption: profile.portrait.alt,
     ...(profile.portrait.credit ? {
       name: profile.portrait.credit.title || profile.portrait.alt,
       creditText: profile.portrait.credit.name,
+      ...(copyrightNotice ? { copyrightNotice } : {}),
       creator: { '@type': 'Organization', name: profile.portrait.credit.name, ...(profile.portrait.credit.creatorUrl ? { url: profile.portrait.credit.creatorUrl } : {}) },
       license: profile.portrait.credit.licenseUrl, acquireLicensePage: profile.portrait.credit.url,
     } : {}),
@@ -45,7 +47,7 @@ export function renderPage() {
         '@type': 'ProfilePage', '@id': `${canonical}#webpage`, url: canonical, name: site.title,
         description: site.description, inLanguage: site.language,
         isPartOf: { '@id': `${canonical}#website` }, mainEntity: { '@id': `${canonical}#person` },
-        primaryImageOfPage: portraitImage || { '@type': 'ImageObject', url: `${canonical}og-image.png`, width: 1200, height: 630 },
+        primaryImageOfPage: portraitImage || { '@type': 'ImageObject', url: `${canonical}og-image.png`, width: 1200, height: 630, ...(copyrightNotice ? { copyrightNotice } : {}) },
       },
     ],
   };
