@@ -25,7 +25,7 @@
       toggle.focus();
     }
   });
-  matchMedia('(min-width: 701px)').addEventListener('change', closeMenu);
+  matchMedia('(min-width: 761px)').addEventListener('change', closeMenu);
 
   document.querySelectorAll('.identity-logo img').forEach((image) => {
     const fallback = () => {
