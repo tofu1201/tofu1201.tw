@@ -29,6 +29,21 @@ svg { display: block; flex-shrink: 0; }
 .skip-link { position: fixed; top: -80px; left: 20px; padding: 15px 22px; background: #eee; color: #111; z-index: 200; }
 .skip-link:focus { top: 15px; }
 
+/* Keep native scrolling with a slim, monochrome scrollbar. */
+@media (forced-colors: none) {
+  :root { scrollbar-color: #737373 #050505; scrollbar-width: thin; }
+  @supports selector(::-webkit-scrollbar) {
+    :root { scrollbar-color: auto; scrollbar-width: auto; }
+    :root::-webkit-scrollbar { width: 12px; height: 12px; }
+    :root::-webkit-scrollbar-track { background: #050505; }
+    :root::-webkit-scrollbar-thumb { min-height: 48px; border: 3px solid #050505; border-radius: 999px; background: #737373; }
+    :root::-webkit-scrollbar-thumb:hover { background: #a0a0a0; }
+    :root::-webkit-scrollbar-thumb:active { background: #c4c4c4; }
+    :root::-webkit-scrollbar-button { display: none; }
+    :root::-webkit-scrollbar-corner { background: #050505; }
+  }
+}
+
 /* Decorative motion stays behind the content and never receives pointer input. */
 .site-background { --grid-size: 80px; position: fixed; inset: 0; z-index: -1; overflow: hidden; pointer-events: none; contain: strict; background: var(--bg); }
 .ambient-glow { position: absolute; width: clamp(520px, 76vw, 1100px); aspect-ratio: 1; border-radius: 50%; will-change: transform; animation-play-state: paused; }
