@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#eee6d6">
+  <meta name="description" content="Tofu 的資訊課自主學習計畫，以筆記本形式呈現學習動機、網站開發專案、執行方式及成果驗收。">
+  <title>Tofu 的資訊課自主學習筆記｜學習計畫</title>
+  <style>
+    :root {
+      color-scheme:light;
+      --desk:#eae6dc;--desk-dot:#d1c6b7;--paper:#fffef7;--ink:#263748;--muted:#667487;--soft:#e5e6df;
+      --rule:#bed6dd;--margin:#e9a6aa;--blue:#386884;--red:#c46763;--yellow:#fff2b8;
+      --green:#e2eede;--tag:#f7f2e7;--shadow:0 28px 80px rgba(65,52,37,.13),0 4px 12px rgba(65,52,37,.07);
+    }
+    :root[data-theme="dark"] {
+      color-scheme:dark;
+      --desk:#1c2529;--desk-dot:#334044;--paper:#243039;--ink:#eaf0eb;--muted:#b4c1c5;--soft:#3b4747;
+      --rule:#344c5d;--margin:#704a50;--blue:#9acbdb;--red:#eca59b;--yellow:#554c35;
+      --green:#354b41;--tag:#34413f;--shadow:0 25px 80px rgba(0,0,0,.32);
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth;scroll-padding-top:105px}
+    body{margin:0;color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"Noto Sans TC","PingFang TC","Microsoft JhengHei",sans-serif;line-height:1.85;
+      background-color:var(--desk);background-image:radial-gradient(var(--desk-dot) .8px,transparent .8px);background-size:21px 21px;}
+    a{color:inherit}button{font:inherit}h1,h2,h3,p{margin-top:0}h1,h2,h3{line-height:1.35}
+    button,a{-webkit-tap-highlight-color:transparent}
+    :focus-visible{outline:3px solid #d79450;outline-offset:4px}
+    .wrap{width:min(1200px,calc(100% - 46px));margin-inline:auto}
+    .topbar{position:sticky;top:0;z-index:30;background:color-mix(in srgb,var(--desk) 91%,transparent);border-bottom:1px solid var(--desk-dot);backdrop-filter:blur(12px)}
+    .topbar-inner{min-height:70px;display:flex;align-items:center;justify-content:space-between;gap:16px}
+    .identity{display:flex;align-items:center;gap:10px;font-weight:800;text-decoration:none;font-size:14px;letter-spacing:.01em}
+    .identity-mark{display:grid;place-items:center;width:34px;height:36px;border:1.5px solid #55718b;border-radius:3px 9px 8px 3px;background:#fffdf4;color:#335c78;box-shadow:3px 3px 0 #cbbf9c;transform:rotate(-6deg);font-size:18px}
+    .top-right{display:flex;align-items:center;gap:9px}
+    .tiny-label{font-size:11px;font-weight:750;letter-spacing:.14em;color:var(--muted)}
+    .ctrl{background:var(--paper);color:var(--ink);border:1px solid var(--desk-dot);border-radius:10px;cursor:pointer;padding:8px 13px;font-size:12px;font-weight:750}
+    .ctrl:hover{border-color:var(--blue);background:var(--tag)}
+    .progress{position:absolute;bottom:0;left:0;width:100%;height:2px;background:transparent;overflow:hidden}
+    .progress span{display:block;height:100%;width:0;background:var(--red);transition:width .12s}
+    .workspace{display:grid;grid-template-columns:205px minmax(0,1fr);gap:32px;align-items:start;padding:44px 0 95px}
+    .sidebar{position:sticky;top:107px;padding-top:18px}
+    .index-head{margin:0 0 10px 10px;font-size:11px;font-weight:800;color:var(--muted);letter-spacing:.17em}
+    .index{background:var(--paper);padding:22px 18px 17px;border:1px solid var(--soft);box-shadow:5px 8px 0 rgba(120,110,93,.08);transform:rotate(-1.5deg);position:relative}
+    .index:before{content:"";position:absolute;width:57px;height:19px;background:#e8caa3b0;left:calc(50% - 28px);top:-10px;transform:rotate(-3deg)}
+    .index h2{font:800 19px/1.4 "Noto Serif TC",Georgia,serif;margin-bottom:15px}
+    .toc{display:grid;gap:3px}
+    .toc a{padding:8px 7px;text-decoration:none;display:flex;align-items:center;gap:11px;font-size:12px;border-radius:7px;color:var(--muted)}
+    .toc a b{font:700 11px/1.5 ui-monospace,SFMono-Regular,Menlo,monospace;color:var(--red)}
+    .toc a:hover,.toc a.active{background:var(--tag);color:var(--ink)}
+    .side-postit{margin:31px 9px 0 20px;padding:21px 17px 19px;background:var(--yellow);transform:rotate(3deg);box-shadow:4px 6px 9px rgba(66,53,30,.12);position:relative}
+    .side-postit:before{content:"";position:absolute;width:46px;height:16px;background:#edc2a0aa;top:-8px;left:25px;transform:rotate(-10deg)}
+    .side-postit .postit-title{font-size:13px;font-weight:850;color:var(--ink);margin-bottom:8px}
+    .side-postit p{font-size:12px;line-height:1.85;margin:0;color:var(--ink)}
+    .side-postit a{font-weight:800;text-underline-offset:3px}
+    .notebook{position:relative;min-width:0}
+    .bookmarks{position:absolute;right:-19px;top:144px;display:grid;gap:8px;z-index:0}
+    .bookmarks a{display:grid;place-items:center;writing-mode:vertical-rl;padding:17px 9px 17px 8px;border-radius:0 8px 8px 0;box-shadow:3px 3px 7px #3e342c19;text-decoration:none;letter-spacing:.14em;font-size:11px;font-weight:750;background:#d5e6e0;color:#38574d}
+    .bookmarks a:nth-child(2){background:#f6ddae;color:#765631}.bookmarks a:nth-child(3){background:#d4dcf0;color:#354f75}.bookmarks a:nth-child(4){background:#eecbca;color:#734b52}
+    .sheet{position:relative;z-index:1;background-color:var(--paper);box-shadow:var(--shadow);border:1px solid color-mix(in srgb,var(--soft) 65%,transparent);border-radius:4px 18px 18px 4px;
+      background-image:linear-gradient(to right,transparent 78px,var(--margin) 78px,var(--margin) 80px,transparent 80px),repeating-linear-gradient(to bottom,transparent 0,transparent 38px,var(--rule) 39px,transparent 40px);
+      background-position:0 0,0 8px;overflow:visible}
+    .sheet:after{content:"";position:absolute;right:0;top:0;bottom:0;width:5px;background:linear-gradient(90deg,#8a78631a,#cfb99525);border-radius:0 18px 18px 0;pointer-events:none}
+    .spiral{position:absolute;left:-23px;top:54px;bottom:46px;z-index:4;display:flex;flex-direction:column;justify-content:space-around;pointer-events:none}
+    .spiral i{display:block;width:43px;height:15px;border:4px solid #78848a;border-left-width:7px;border-radius:14px;background:linear-gradient(#d8dfe1,#869198);box-shadow:0 2px 3px #423e3580}
+    .hole-track{position:absolute;top:53px;bottom:44px;left:21px;display:flex;flex-direction:column;justify-content:space-around;pointer-events:none}
+    .hole-track i{display:block;width:15px;height:15px;border-radius:50%;background:var(--desk);border:2px solid #bcb4a4;box-shadow:inset 1px 1px 2px #0002}
+    .sheet-content{position:relative;z-index:2;padding:0 54px 55px 111px}
+    .cover{position:relative;padding:59px 0 70px;border-bottom:2px dashed color-mix(in srgb,var(--muted) 30%,transparent)}
+    .page-topline{display:flex;justify-content:space-between;align-items:center;gap:10px;color:var(--muted);font:700 11px/1.5 ui-monospace,Consolas,monospace;letter-spacing:.09em}
+    .date-pill{border:1px solid var(--desk-dot);border-radius:50px;padding:4px 10px;background:var(--paper)}
+    .tiny-round{display:inline-block;height:9px;width:9px;border:2px solid var(--red);border-radius:50%;vertical-align:middle;margin-right:7px}
+    .cover-main{padding:66px 0 32px;position:relative}
+    .overline{font-size:12px;font-weight:850;letter-spacing:.19em;color:var(--blue);margin-bottom:17px}
+    h1{font-family:"Noto Serif TC","Songti TC","PMingLiU",serif;font-size:clamp(39px,4.8vw,68px);font-weight:900;letter-spacing:-.085em;margin:0 0 27px}
+    h1 span{position:relative;display:inline-block;white-space:nowrap}
+    h1 span:after{content:"";position:absolute;bottom:-3px;height:10px;left:-3px;right:-7px;background:#e9c77e99;z-index:-1;transform:rotate(-1.4deg);border-radius:40%}
+    .cover-desc{font-size:15px;max-width:630px;color:var(--ink);line-height:2.12;margin-bottom:30px}
+    .labels{display:flex;flex-wrap:wrap;gap:9px;margin-bottom:34px}
+    .labels span{padding:5px 12px;background:var(--tag);border:1px solid var(--desk-dot);font-size:12px;font-weight:750;border-radius:4px;transform:rotate(-1deg)}
+    .labels span:nth-child(2){transform:rotate(2deg)}.labels span:nth-child(3){transform:rotate(-2deg)}
+    .cover-row{display:flex;align-items:end;justify-content:space-between;gap:15px;flex-wrap:wrap}
+    .author{font-size:13px;color:var(--muted)}.author strong{color:var(--ink);font-size:17px;letter-spacing:.02em}
+    .mark-seal{position:relative;transform:rotate(9deg);border:3px double var(--red);color:var(--red);border-radius:50%;width:94px;height:94px;display:grid;place-items:center;text-align:center;font:900 11px/1.45 ui-monospace,monospace;letter-spacing:.08em;opacity:.89}
+    .clip{position:absolute;right:18%;top:-12px;display:block;width:15px;height:64px;border:4px solid #7f93a2;border-bottom-left-radius:11px;border-bottom-right-radius:11px;border-top-left-radius:10px;border-top-right-radius:10px;transform:rotate(11deg);opacity:.7}
+    .chapter{padding:65px 0 57px;border-bottom:2px dashed color-mix(in srgb,var(--muted) 30%,transparent);scroll-margin-top:90px}
+    .chapter:last-child{border-bottom:0;padding-bottom:8px}
+    .chapter-kicker{display:flex;gap:12px;align-items:center;color:var(--red);font:800 11px/1.3 ui-monospace,Consolas,monospace;letter-spacing:.14em;margin:0 0 13px}
+    .chapter-kicker:after{content:"";width:44px;height:1px;background:var(--red)}
+    .chapter h2{font-size:clamp(25px,3vw,36px);font-family:"Noto Serif TC","Songti TC",serif;font-weight:900;letter-spacing:-.065em;margin-bottom:19px}
+    .lead-note{font-size:13px;color:var(--muted);margin-bottom:27px;line-height:1.9}
+    .learning-points{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin-top:25px}
+    .note-card{min-width:0;padding:20px 17px 18px;background:color-mix(in srgb,var(--paper) 82%,var(--green));border:1px solid color-mix(in srgb,var(--green) 62%,var(--muted));box-shadow:3px 4px 0 #74867a1c;border-radius:2px}
+    .note-card:nth-child(2){background:color-mix(in srgb,var(--paper) 77%,var(--yellow));transform:rotate(1deg)}
+    .note-card:nth-child(3){transform:rotate(-.8deg)}
+    .note-card b{display:block;font:850 12px/1.4 ui-monospace,monospace;color:var(--red);margin-bottom:14px}
+    .note-card h3{font-size:16px;margin-bottom:9px;font-weight:850}
+    .note-card p{font-size:13px;line-height:1.8;color:var(--muted);margin:0}
+    .small-scribble{font-family:"Noto Serif TC","DFKai-SB",serif;color:var(--blue);font-size:13px;transform:rotate(-3deg);display:inline-block;margin-top:23px;border-bottom:2px wavy var(--blue)}
+    .project-list{display:grid;gap:17px}
+    .project-row{background:color-mix(in srgb,var(--paper) 94%,var(--green));border:1px solid var(--soft);padding:23px 25px;position:relative;border-radius:3px;box-shadow:3px 5px 0 #576c6710}
+    .project-row:before{content:"";position:absolute;left:0;top:0;bottom:0;width:6px;background:#92b6a3}
+    .project-row:nth-child(2):before{background:#d1b47e}.project-row:nth-child(3):before{background:#a3b1d9}.project-row:nth-child(4):before{background:#d8a3a0}
+    .project-header{display:flex;align-items:start;justify-content:space-between;gap:15px;flex-wrap:wrap}
+    .project-index{font:800 11px/1.7 ui-monospace,monospace;color:var(--red);letter-spacing:.05em}
+    .project-title{font-size:18px;font-weight:850;margin:3px 0 2px}
+    .project-url{font:12px/1.7 ui-monospace,Consolas,monospace;color:var(--muted);word-break:break-word}
+    .project-link{display:inline-block;padding:7px 10px;border:1px solid var(--soft);border-radius:5px;background:var(--paper);font-size:12px;text-decoration:none;font-weight:750;white-space:nowrap}
+    .project-link:hover{border-color:var(--blue);color:var(--blue)}
+    .project-row ul{margin:17px 0 0;padding-left:18px;font-size:13px;color:var(--ink);line-height:1.85}
+    .project-row li+li{margin-top:4px}
+    .scribbled-box{margin-top:20px;padding:13px 17px;background:var(--yellow);font-size:13px;transform:rotate(-.7deg);box-shadow:4px 4px 0 #ae9b6d20}
+    .steps{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:13px;counter-reset:step}
+    .step{position:relative;border:1px solid var(--soft);border-radius:5px;background:var(--paper);padding:21px 16px 19px;box-shadow:3px 4px 0 #69778113}
+    .step:before{counter-increment:step;content:"0" counter(step);display:inline-block;color:var(--red);font:900 17px/1.5 ui-monospace,monospace;margin-bottom:22px}
+    .step h3{font-size:15px;margin-bottom:9px;font-weight:850}.step p{font-size:12px;line-height:1.85;color:var(--muted);margin:0}
+    .step:not(:last-child):after{content:"→";position:absolute;right:-13px;top:30px;color:var(--blue);font-size:19px;z-index:2}
+    .paper-meta{display:flex;gap:12px;flex-wrap:wrap;font-size:12px;color:var(--muted);margin-top:24px}
+    .paper-meta span{border:1px dashed var(--desk-dot);padding:4px 10px;background:var(--paper)}
+    .compare{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+    .checksheet{padding:22px 19px 19px;background:color-mix(in srgb,var(--paper) 93%,var(--green));border:1px solid var(--soft);border-radius:3px;box-shadow:3px 5px 0 #5b6d6420}
+    .checksheet h3{font-size:16px;margin-bottom:15px;font-weight:850}
+    .checksheet ul{list-style:none;padding:0;margin:0}
+    .checksheet li{font-size:13px;padding:12px 0 12px 30px;position:relative;line-height:1.8;border-top:1px dashed color-mix(in srgb,var(--soft) 80%,var(--muted))}
+    .checksheet li:before{content:"✓";position:absolute;top:13px;left:1px;border:1.5px solid var(--blue);border-radius:3px;height:18px;width:18px;display:grid;place-items:center;font-size:12px;color:var(--blue);line-height:1}
+    .request{position:relative;background:var(--yellow);padding:30px 31px 26px;box-shadow:6px 7px 0 #96875e16;transform:rotate(-.4deg);margin:13px 0 29px}
+    .request:before{content:"";position:absolute;top:-11px;left:45%;width:80px;height:23px;background:#c8b9a777;transform:rotate(6deg)}
+    .request h3{font-size:18px;font-weight:900;margin-bottom:11px}.request p{font-size:14px;line-height:2;margin:0}
+    .teacher-notes{border:1px dashed color-mix(in srgb,var(--blue) 46%,transparent);background:color-mix(in srgb,var(--paper) 75%,transparent);padding:19px 21px 14px;margin-top:24px}
+    .teacher-notes-title{font-size:13px;font-weight:850;color:var(--blue);margin-bottom:13px}
+    .teacher-notes .ruleline{border-bottom:1px solid var(--rule);height:35px}
+    .teacher-notes p{font-size:11px;color:var(--muted);margin:12px 0 0}
+    .sheet-foot{display:flex;align-items:center;justify-content:space-between;gap:15px;margin-top:36px;color:var(--muted);font:11px/1.8 ui-monospace,monospace;letter-spacing:.06em}
+    .footer{text-align:center;font-size:12px;color:var(--muted);padding:32px 0 0}
+    .skip{position:absolute;top:-100px;left:10px;background:var(--paper);z-index:99;padding:10px}.skip:focus{top:10px}
+    @media(max-width:1080px){.workspace{grid-template-columns:175px minmax(0,1fr);gap:25px}.sheet-content{padding-left:100px;padding-right:39px}.learning-points{grid-template-columns:1fr}.note-card:nth-child(n){transform:none}.steps{grid-template-columns:repeat(2,1fr)}.step:nth-child(2):after{display:none}.side-postit{margin-left:5px}}
+    @media(max-width:740px){.workspace{display:block;padding:24px 0 55px}.sidebar{position:static;padding:0;margin-bottom:27px}.index-head,.side-postit{display:none}.index{transform:none;box-shadow:none;padding:11px 12px;border-radius:9px}.index:before,.index h2{display:none}.toc{display:flex;gap:4px;overflow:auto;scrollbar-width:thin}.toc a{white-space:nowrap;padding:6px 9px;font-size:11px}.sheet{border-radius:3px 12px 12px 3px;background-image:linear-gradient(to right,transparent 48px,var(--margin) 48px,var(--margin) 50px,transparent 50px),repeating-linear-gradient(to bottom,transparent 0,transparent 38px,var(--rule) 39px,transparent 40px)}.sheet-content{padding:0 24px 32px 69px}.spiral{left:-15px}.spiral i{width:29px;height:13px;border-width:3px;border-left-width:5px}.hole-track{left:10px}.hole-track i{width:13px;height:13px}.cover{padding-top:35px}.cover-main{padding:44px 0 20px}.chapter{padding:47px 0 41px}.bookmarks{display:none}.compare{grid-template-columns:1fr}.clip{right:7%}.cover-desc{font-size:14px}}
+    @media(max-width:480px){.wrap{width:calc(100% - 28px)}.topbar-inner{min-height:61px}.tiny-label{display:none}.identity{font-size:12px}.ctrl{font-size:11px;padding:7px 9px}.top-right{gap:5px}.sheet-content{padding:0 17px 24px 60px}.sheet{background-image:linear-gradient(to right,transparent 43px,var(--margin) 43px,var(--margin) 44px,transparent 44px),repeating-linear-gradient(to bottom,transparent 0,transparent 38px,var(--rule) 39px,transparent 40px)}.hole-track{left:7px}.page-topline{font-size:9px}.cover-main{padding-top:40px}.overline{font-size:10px}h1{font-size:clamp(33px,9vw,42px);letter-spacing:-.075em}.cover-desc{font-size:13px}.mark-seal{width:73px;height:73px;font-size:9px}.chapter h2{font-size:25px}.steps{grid-template-columns:1fr}.step:after{display:none!important}.project-row{padding:20px 15px}.project-link{margin-top:5px}.request{padding:22px 19px}.sheet-foot{flex-wrap:wrap}.cover-row{align-items:center}}
+    @media print{
+      @page{size:A4;margin:13mm}
+      :root{--desk:#fff;--paper:#fff;--ink:#111;--muted:#555;--rule:#d1dae0;--margin:#eac9c9;--soft:#ddd;--shadow:none;--tag:#f6f6f6;--green:#fff;--yellow:#fff7de}
+      html{scroll-behavior:auto}body{background:#fff;color:#111;line-height:1.6;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+      .topbar,.sidebar,.bookmarks,.spiral,.hole-track,.clip,.ctrl,.progress{display:none!important}
+      .wrap{width:100%}.workspace{display:block;padding:0}.sheet{box-shadow:none!important;border:none;background:#fff;border-radius:0}.sheet-content{padding:0}.sheet:after{display:none}.cover{padding:15px 0 22px}.cover-main{padding:25px 0 10px}h1{font-size:40px}.cover-desc{font-size:12px}.labels{margin-bottom:16px}.mark-seal{width:70px;height:70px}.chapter{padding:24px 0 18px;break-before:auto}.chapter h2{font-size:24px;margin-bottom:10px}.lead-note{margin-bottom:14px}.learning-points{grid-template-columns:repeat(3,1fr)}.note-card,.project-row,.step,.checksheet,.request,.teacher-notes{break-inside:avoid;box-shadow:none;transform:none!important}.note-card{padding:13px}.note-card h3{font-size:13px}.note-card p,.project-row li,.checksheet li{font-size:11px}.project-list{gap:9px}.project-row{padding:12px 16px}.project-title{font-size:15px}.project-row ul{margin-top:8px}.project-link{display:none}.steps{grid-template-columns:repeat(4,1fr)}.step{padding:13px}.step h3{font-size:12px}.step p{font-size:10px}.step:before{margin-bottom:6px}.compare{grid-template-columns:1fr 1fr}.checksheet{padding:12px}.checksheet li{padding:5px 0 5px 24px}.checksheet li:before{top:7px}.request{padding:18px}.request p{font-size:12px}.teacher-notes{padding:12px}.teacher-notes .ruleline{height:22px}.footer{display:none}
+    }
+    @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.progress span{transition:none}}
+  </style>
+</head>
+<body>
+<a class="skip" href="#top">跳至主要內容</a>
+<header class="topbar">
+  <div class="wrap topbar-inner">
+    <a class="identity" href="#top"><span class="identity-mark" aria-hidden="true">T.</span><span>Tofu's Learning Notebook</span></a>
+    <div class="top-right">
+      <span class="tiny-label">INFO CLASS / 2026</span>
+      <button class="ctrl" id="themeToggle" type="button" aria-label="切換日間／夜間閱讀模式" aria-pressed="false">☾ 夜讀</button>
+      <button class="ctrl" id="printButton" type="button">列印申請</button>
+    </div>
+  </div>
+  <div class="progress" aria-hidden="true"><span id="progressBar"></span></div>
+</header>
+<main class="wrap workspace" id="top">
+  <aside class="sidebar" aria-label="筆記目錄">
+    <p class="index-head">TABLE OF CONTENTS</p>
+    <div class="index">
+      <h2>這本筆記的目錄</h2>
+      <nav class="toc" aria-label="計畫章節">
+        <a href="#intro"><b>01</b> 為什麼想這樣學</a>
+        <a href="#projects"><b>02</b> 想完成的專案</a>
+        <a href="#timeline"><b>03</b> 學習怎麼進行</a>
+        <a href="#evaluation"><b>04</b> 課堂約定與驗收</a>
+        <a href="#teacher"><b>05</b> 給老師的便條</a>
+      </nav>
+    </div>
+    <div class="side-postit"><div class="postit-title">✦ 小提醒</div><p>這不是免上課申請，而是希望在符合課堂要求的前提下，做更多有成果的自主實作。</p></div>
+  </aside>
+
+  <div class="notebook">
+    <nav class="bookmarks" aria-label="快速跳至章節"><a href="#intro">動機</a><a href="#projects">專案</a><a href="#timeline">方式</a><a href="#evaluation">驗收</a></nav>
+    <div class="sheet">
+      <div class="spiral" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+      <div class="hole-track" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+      <div class="sheet-content">
+        <section class="cover" aria-labelledby="hero-title">
+          <span class="clip" aria-hidden="true"></span>
+          <div class="page-topline"><span><span class="tiny-round"></span>INDEPENDENT LEARNING PROPOSAL</span><span class="date-pill">2026 / 11</span></div>
+          <div class="cover-main">
+            <p class="overline">MY LEARNING JOURNAL — NO. 001</p>
+            <h1 id="hero-title">資訊課<br><span>自主學習計畫</span></h1>
+            <p class="cover-desc">想把資訊課學到的知識，不只停留在課本與練習題上，而是用來改善實際運作中的網站、理解網路背後的原理，並留下看得見的學習紀錄。</p>
+            <div class="labels"><span>Web Development</span><span>Networking</span><span>Python</span><span>Learning by Doing</span></div>
+            <div class="cover-row"><p class="author">提案人　<strong>Tofu</strong><br>九年級資訊課｜自主學習申請</p><div class="mark-seal" aria-label="計畫申請中">LEARN<br>BUILD<br>REVIEW</div></div>
+          </div>
+        </section>
+
+        <section class="chapter" id="intro" aria-labelledby="intro-title">
+          <p class="chapter-kicker">CHAPTER 01 / WHY</p>
+          <h2 id="intro-title">為什麼想這樣學？</h2>
+          <p class="lead-note">我已接觸 HTML、CSS、JavaScript 與 Python 等技術，希望在完成老師安排的共同學習要求後，於適當課堂時段進行更具挑戰性的實作。自主學習也需要有計畫、有紀錄、可以接受檢視。</p>
+          <div class="learning-points">
+            <article class="note-card"><b>NOTE 01</b><h3>學得更深入</h3><p>以真實需求練習程式設計、除錯與網站維護，不只完成範例，也理解為什麼這樣設計。</p></article>
+            <article class="note-card"><b>NOTE 02</b><h3>和課程連起來</h3><p>搭配九年級網路相關單元，實際研究 DNS、HTTP／HTTPS、網站架構與基本資安。</p></article>
+            <article class="note-card"><b>NOTE 03</b><h3>留下學習痕跡</h3><p>紀錄目標、遇到的問題、嘗試過的方法與最後成果，讓學習過程可以被老師評量。</p></article>
+          </div>
+          <span class="small-scribble">↳ 重點不是做得多，而是真的學會。</span>
+        </section>
+
+        <section class="chapter" id="projects" aria-labelledby="projects-title">
+          <p class="chapter-kicker">CHAPTER 02 / PROJECTS</p>
+          <h2 id="projects-title">這學期想做的事</h2>
+          <p class="lead-note">以目前已有的網站與開發經驗為起點。以下為可選的實作方向，將視課程進度、實際需求及老師建議調整；不代表全部必須於同一學期完成。</p>
+          <div class="project-list">
+            <article class="project-row"><div class="project-header"><div><div class="project-index">PROJECT A / PERSONAL WEBSITE</div><h3 class="project-title">個人網站優化</h3><div class="project-url">tofu1201.tw</div></div><a class="project-link" href="https://tofu1201.tw" target="_blank" rel="noopener noreferrer">查看網站 ↗</a></div><ul><li>調整網站版面、手機瀏覽體驗與無障礙設計。</li><li>檢查載入效率、維護性與資訊架構。</li><li>整理修改前後比較，說明改善原因與成果。</li></ul></article>
+            <article class="project-row"><div class="project-header"><div><div class="project-index">PROJECT B / WEB SERVICE</div><h3 class="project-title">既有網站與服務維護</h3><div class="project-url">tfdst.xyz</div></div><a class="project-link" href="https://tfdst.xyz" target="_blank" rel="noopener noreferrer">查看網站 ↗</a></div><ul><li>盤點需要改進的介面、功能或使用流程。</li><li>重新整理部分程式結構，練習可維護的寫法。</li><li>以測試與操作紀錄確認調整是否有效。</li></ul></article>
+            <article class="project-row"><div class="project-header"><div><div class="project-index">PROJECT C / COMMUNITY WEBSITE</div><h3 class="project-title">社群網站使用體驗改善</h3><div class="project-url">jajh.art</div></div><a class="project-link" href="https://jajh.art" target="_blank" rel="noopener noreferrer">查看網站 ↗</a></div><ul><li>研究網站導覽與行動裝置操作體驗。</li><li>改善資訊呈現與常見互動流程。</li><li>檢視使用者隱私與基本資料安全設計。</li></ul></article>
+            <article class="project-row"><div class="project-header"><div><div class="project-index">PROJECT D / OPTIONAL</div><h3 class="project-title">Python 與 Discord Bot</h3><div class="project-url">依課堂環境選擇合適主題</div></div></div><ul><li>練習事件處理、指令流程、例外處理與測試。</li><li>製作簡單的功能說明與錯誤排查紀錄。</li><li>不在學校設備儲存 SSH 私鑰、機器人 Token 或正式服務的敏感憑證。</li></ul></article>
+          </div>
+          <div class="scribbled-box">✎ 每次先選定一個可完成的小目標，再逐步累積成完整作品。</div>
+        </section>
+
+        <section class="chapter" id="timeline" aria-labelledby="timeline-title">
+          <p class="chapter-kicker">CHAPTER 03 / PROCESS</p>
+          <h2 id="timeline-title">學習怎麼進行？</h2>
+          <p class="lead-note">不以固定週數強行安排，而是依課堂實際可運用的時間，採取「確認目標 → 分析問題 → 自主實作 → 展示成果」的循環。</p>
+          <div class="steps"><article class="step"><h3>確認目標</h3><p>對照老師進度與課程要求，選擇合適的本次任務。</p></article><article class="step"><h3>分析問題</h3><p>確認使用需求，規劃技術方法與驗證標準。</p></article><article class="step"><h3>自主實作</h3><p>進行程式修改、功能測試及問題排除，保留紀錄。</p></article><article class="step"><h3>成果回報</h3><p>展示差異，簡述所學、問題與下階段改進方向。</p></article></div>
+          <div class="paper-meta"><span>工具：優先使用瀏覽器及學校允許的環境</span><span>成果：文字紀錄／截圖／功能展示</span></div>
+        </section>
+
+        <section class="chapter" id="evaluation" aria-labelledby="evaluation-title">
+          <p class="chapter-kicker">CHAPTER 04 / CHECKLIST</p>
+          <h2 id="evaluation-title">課堂約定與成果驗收</h2>
+          <p class="lead-note">自主學習不是免除資訊課應有的學習、作業或評量，而是在老師同意與課堂秩序許可的情況下，延伸自主探究的深度。</p>
+          <div class="compare">
+            <div class="checksheet"><h3>我會配合的事項</h3><ul><li>配合共同教學、作業、測驗與必要課堂活動。</li><li>僅於老師許可的時間進行自主專案。</li><li>不妨礙教師廣播、課堂管理與其他同學學習。</li><li>以瀏覽器或核可工具為主，不預設電腦具備 Linux。</li><li>避免在公用設備留下金鑰、密碼與敏感資訊。</li></ul></div>
+            <div class="checksheet"><h3>我會提供的成果</h3><ul><li>各階段目標與實際執行進度。</li><li>作品功能或網站調整前後的對照。</li><li>技術原理、測試結果與排錯紀錄。</li><li>定期向老師說明學習收穫及下一步。</li><li>依老師指定方式提交資料供評量。</li></ul></div>
+          </div>
+        </section>
+
+        <section class="chapter" id="teacher" aria-labelledby="teacher-title">
+          <p class="chapter-kicker">CHAPTER 05 / NOTE TO TEACHER</p>
+          <h2 id="teacher-title">給資訊老師的一張便條</h2>
+          <div class="request"><h3>希望老師可以同意……</h3><p>在完成資訊課基本學習要求、遵守課堂規定並接受老師指導與評量的前提下，讓我在適當的課堂時段進行本計畫中的自主學習與實作。如果當時沒有必要跟隨教師廣播畫面，希望能經老師同意後，讓電腦恢復個人操作畫面，以便進行開發、測試及展示。實際實施方式及範圍仍以老師的教學安排為準。</p></div>
+          <div class="teacher-notes"><div class="teacher-notes-title">老師的建議／補充條件（列印後可手寫）</div><div class="ruleline"></div><div class="ruleline"></div><div class="ruleline"></div><p>本頁為自主學習申請提案，並非已獲核准之聲明。</p></div>
+          <div class="sheet-foot"><span>TOFU / LEARNING BY DOING</span><span>END OF NOTEBOOK · 2026</span></div>
+        </section>
+      </div>
+    </div>
+    <footer class="footer">Designed & written by Tofu · 資訊課自主學習申請計畫</footer>
+  </div>
+</main>
+<script>
+  (function(){
+    const root=document.documentElement;
+    const theme=document.getElementById('themeToggle');
+    try{if(localStorage.getItem('tofu-notebook-theme')==='dark')root.dataset.theme='dark'}catch(e){}
+    const sync=()=>{const dark=root.dataset.theme==='dark';theme.textContent=dark?'☀ 日讀':'☾ 夜讀';theme.setAttribute('aria-pressed',String(dark))};
+    sync();
+    theme.addEventListener('click',()=>{const next=root.dataset.theme==='dark'?'light':'dark';root.dataset.theme=next;try{localStorage.setItem('tofu-notebook-theme',next)}catch(e){}sync()});
+    document.getElementById('printButton').addEventListener('click',()=>window.print());
+    const bar=document.getElementById('progressBar');
+    const updateProgress=()=>{const max=document.documentElement.scrollHeight-innerHeight;bar.style.width=(max>0?Math.min(100,100*scrollY/max):100)+'%'};
+    addEventListener('scroll',updateProgress,{passive:true});addEventListener('resize',updateProgress);updateProgress();
+    if('IntersectionObserver' in window){const links=[...document.querySelectorAll('.toc a')];const observer=new IntersectionObserver(entries=>{
+      const visible=entries.filter(entry=>entry.isIntersecting).sort((a,b)=>a.boundingClientRect.top-b.boundingClientRect.top);
+      if(visible.length){links.forEach(a=>{const on=a.hash==='#'+visible[0].target.id;a.classList.toggle('active',on);if(on)a.setAttribute('aria-current','location');else a.removeAttribute('aria-current')})}
+    },{rootMargin:'-20% 0px -55% 0px',threshold:0});document.querySelectorAll('.chapter').forEach(s=>observer.observe(s))}
+  })();
+</script>
+</body>
+</html>
