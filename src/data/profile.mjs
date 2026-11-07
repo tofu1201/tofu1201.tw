@@ -56,6 +56,7 @@ export const profile = {
     { id: 'coscup-2026', name: 'COSCUP 2026', role: 'Attendee', roleLabel: '會眾', logo: '/images/activities/coscup-2026.svg', logoTheme: 'dark', initials: 'CO', url: 'https://coscup.org/2026/' },
     { id: 'futuremode-2026', name: 'FUTUREMODE 2026', role: 'Developer', roleLabel: '開發者', logo: '/images/activities/futuremode-2026.png', logoTheme: 'dark', initials: 'FM', url: 'https://www.futuremode.xyz/' },
     { id: 'pycon-2026', name: 'PyCon 2026', role: 'Event Staff', roleLabel: '場務組', logo: '/images/activities/pycon-2026.svg', logoTheme: 'dark', initials: 'Py', url: 'https://tw.pycon.org/2026/' },
+    { id: 'HITCON-CYBER-RANGE-2026', name: 'HITCON CYBER RANGE 2026', role: 'Attendee', roleLabel: '會眾', logo: '/images/activities/hitcon-cyber-range-2026.svg', logoTheme: 'dark', initials: 'HC', url: 'https://hitcon.org/2026/CyberRangexCTF/onsite.html' },
   ],
   // 友站資料填入後會自動顯示於活動下方；每筆可提供 Logo 與簡短說明。
   friends: [
