@@ -2,7 +2,7 @@
 
 核對與下載日期：2026-10-23。圖像均取自活動官方網站或該網站引用的官方 CDN，僅用於標示 Tofu Chen 的活動參與經歷，權利屬各原權利人。網站執行時使用本機檔案。
 
-HITCON CYBER RANGE 2026 圖像於 2026-11-07 補充。
+HITCON CR × CTF 2026 探索日圖像於 2026-11-07 補充。
 
 | 活動 | 本機檔案 | 官方頁面 | 原始圖像 | 核對說明 |
 | --- | --- | --- | --- | --- |
@@ -17,4 +17,4 @@ HITCON CYBER RANGE 2026 圖像於 2026-11-07 補充。
 | COSCUP 2026 | `coscup-2026.svg` | https://coscup.org/2026/ | https://coscup.org/2026/favicon.svg | 2026 網站的官方圖示。 |
 | FUTUREMODE 2026 | `futuremode-2026.png` | https://www.futuremode.xyz/ | https://images.squarespace-cdn.com/content/v1/698ac8797f3cb35b8bf437d6/9aa4d5bb-2c7b-4e84-b38e-563874fa72dd/favicon.ico?format=100w | 2026 官方網站的 FM 品牌圖示，轉為 PNG；圖示本身無年份。 |
 | PyCon 2026 | `pycon-2026.svg` | https://tw.pycon.org/2026/ | https://tw.pycon.org/2026/images/pycon-tw.svg | 2026 網站使用的 PyCon TW 品牌字標；圖像本身無年份。 |
-| HITCON CYBER RANGE 2026 | `hitcon-cyber-range-2026.svg` | https://hitcon.org/2026/CyberRangexCTF/onsite.html | https://hitcon.org/2026/CyberRangexCTF/favicon.svg | 當屆官方活動目錄提供的 SVG 圖示，保留原始白色線條與漸層；圖示本身無年份。 |
+| HITCON CR × CTF 2026 探索日 | `hitcon-cyber-range-2026.svg` | https://hitcon.org/2026/CyberRangexCTF/onsite.html | https://hitcon.org/2026/CyberRangexCTF/favicon.svg | 當屆官方活動目錄提供的 SVG 圖示，保留原始白色線條與漸層；圖示本身無年份。 |
