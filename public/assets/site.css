@@ -22,7 +22,7 @@
 }
 *, *::before, *::after { box-sizing: border-box; }
 body { margin: 0; isolation: isolate; }
-h1, h2, p { margin: 0; }
+h1, h2, h3, p { margin: 0; }
 a { color: inherit; text-decoration: none; -webkit-tap-highlight-color: transparent; }
 button { font: inherit; color: inherit; cursor: pointer; touch-action: manipulation; }
 svg { display: block; flex-shrink: 0; }

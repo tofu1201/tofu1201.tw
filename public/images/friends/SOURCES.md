@@ -1,8 +1,8 @@
-# 友站資料與圖像來源
+# 友站圖像來源
 
-核對與下載日期：2026-10-24。友站名稱、簡介、網址與頭像取自公開友站清單 `http://payload.ingress.hnhost.net:10225/`；圖像下載後隨專案保存，網站執行時不需向外部網站請求圖像。各網站名稱、內容與圖像權利歸其作者或權利人所有。
+友站名稱與網址對應網站中的友站連結，圖像由下表所列公開來源取得並保存於本目錄。第三方頭像與標誌的權利歸各作者或權利人所有，未包含於專案的 MIT 授權。來源核對日期：2026-10-24。
 
-| 名稱 | 網站 | 本機圖像 | 原始圖像 |
+| 友站 | 網站 | 專案圖檔 | 圖像來源 |
 | --- | --- | --- | --- |
 | Wuzuan | https://wuzuantw.com/ | `wuzuan.png` | https://wuzuantw.com/images/favicon.png |
 | sangege | https://sange.ge/ | `sangege.png` | https://gravatar.com/avatar/f6d0a62624d1d82d90ea3232e3663561?s=400&d=robohash&r=x |
@@ -15,5 +15,3 @@
 | 夏川桃源 | https://natsukawataoyuan.com/ | `summer.png` | https://gravatar.com/avatar/7b6c2dfa7967e9d6747a2cb7d052de230fce4016b1e48e5b856ae72ef293bd78?v=1769244245000&size=256&d=initials |
 | 烤鴨 | https://www.gdtw.qzz.io/ | `roast-duck.jpg` | https://www.gdtw.qzz.io/duck.jpg |
 | jiaoyue | https://jiaoyue.gay/ | `jiaoyue.jpg` | https://www.gravatar.com/avatar/7a755c16d6fbdaeabc32efef0e6d96447c?d=mp&s=200 |
-
-資料使用時已將烤鴨原始簡介中的 HTML 標籤移除，只保留文字內容。

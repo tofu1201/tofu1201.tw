@@ -6,7 +6,9 @@ import { createHash } from 'node:crypto';
 import { gzipSync } from 'node:zlib';
 import { renderPage } from '../src/page.mjs';
 import { renderNotFound } from '../src/not-found.mjs';
-import { metadataFiles } from '../src/metadata.mjs';
+import { metadataFiles, metadataHeaders } from '../src/metadata.mjs';
+import { renderLearningPage } from '../src/learning.mjs';
+import { contentDates } from './content-dates.mjs';
 
 const projectRoot = fileURLToPath(new URL('../', import.meta.url));
 const preview = process.argv.includes('--preview');
@@ -22,7 +24,9 @@ if (preview) {
   try { await stat(resolve(directory, 'index.html')); }
   catch { console.error('請先執行 npm run build，再開啟正式版預覽。'); process.exit(1); }
 }
-const generated = metadataFiles();
+const dates = contentDates(projectRoot);
+const generated = metadataFiles(dates);
+const extraHeaders = metadataHeaders();
 const types = {
   '.html': 'text/html; charset=utf-8', '.css': 'text/css; charset=utf-8',
   '.js': 'text/javascript; charset=utf-8', '.json': 'application/json; charset=utf-8',
@@ -30,6 +34,7 @@ const types = {
   '.svg': 'image/svg+xml', '.png': 'image/png', '.webp': 'image/webp',
   '.jpg': 'image/jpeg', '.jpeg': 'image/jpeg', '.avif': 'image/avif',
   '.ico': 'image/x-icon', '.woff2': 'font/woff2',
+  '.md': 'text/markdown; charset=utf-8',
 };
 
 const server = createServer(async (request, response) => {
@@ -43,15 +48,27 @@ const server = createServer(async (request, response) => {
   }
   try {
     const pathname = decodeURIComponent(new URL(request.url, 'http://localhost').pathname);
+    if (['/index.html', '/self.html', '/self/'].includes(pathname)) {
+      response.writeHead(301, { Location: pathname === '/index.html' ? '/' : '/self' });
+      response.end();
+      return;
+    }
+    if (pathname === '/_headers') {
+      response.writeHead(404, { 'Content-Type': types['.html'] });
+      response.end(request.method === 'HEAD' ? undefined : renderNotFound());
+      return;
+    }
     let body;
     let type;
     let status = 200;
-    if (!preview && (pathname === '/' || pathname === '/index.html')) {
-      body = Buffer.from(renderPage()); type = types['.html'];
+    if (!preview && pathname === '/') {
+      body = Buffer.from(renderPage({ modified: dates.home })); type = types['.html'];
+    } else if (!preview && pathname === '/self') {
+      body = Buffer.from(renderLearningPage(await readFile(resolve(projectRoot, 'public/self.html'), 'utf8'), { modified: dates.learning })); type = types['.html'];
     } else if (!preview && generated.has(pathname.slice(1))) {
       body = Buffer.from(generated.get(pathname.slice(1))); type = types[extname(pathname)];
     } else {
-      const target = resolve(directory, `.${pathname === '/' ? '/index.html' : pathname}`);
+      const target = resolve(directory, `.${pathname === '/' ? '/index.html' : pathname === '/self' ? '/self.html' : pathname}`);
       if (!target.startsWith(`${directory}${sep}`)) {
         response.writeHead(403); response.end('Forbidden'); return;
       }
@@ -62,13 +79,16 @@ const server = createServer(async (request, response) => {
         body = Buffer.from(renderNotFound()); type = types['.html']; status = 404;
       }
     }
+    response.setHeader('Content-Type', type);
+    if (status === 200 && extraHeaders[pathname]) {
+      for (const [name, value] of Object.entries(extraHeaders[pathname])) response.setHeader(name, value);
+    }
     const etag = `"${createHash('sha256').update(body).digest('hex').slice(0, 20)}"`;
     response.setHeader('ETag', etag);
     response.setHeader('Vary', 'Accept-Encoding');
     if (request.headers['if-none-match'] === etag && status === 200) {
       response.writeHead(304); response.end(); return;
     }
-    response.setHeader('Content-Type', type);
     if (/gzip/.test(request.headers['accept-encoding'] || '') && /^(text\/|application\/(json|xml))/.test(type) && body.length > 1000) {
       body = gzipSync(body); response.setHeader('Content-Encoding', 'gzip');
     }

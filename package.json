@@ -2,12 +2,19 @@
   "name": "tofu-personal-site",
   "version": "1.0.0",
   "private": true,
+  "license": "MIT",
+  "homepage": "https://tofu1201.tw",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/tofu1201/tofu1201.tw.git"
+  },
   "type": "module",
   "description": "Tofu Chen 的一頁式個人品牌網站",
   "engines": { "node": ">=22" },
   "scripts": {
     "dev": "node scripts/dev.mjs",
     "build": "node scripts/build.mjs",
+    "test": "node --test tests/*.test.mjs",
     "preview": "node scripts/serve.mjs --preview",
     "assets": "node scripts/generate-social.mjs"
   }
