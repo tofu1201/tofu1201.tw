@@ -70,8 +70,8 @@ export const profile = {
     { name: 'LongTai', role: '學生／討厭開發的開發者', logo: '/images/friends/longtai.png', logoTheme: 'dark', initials: 'L', url: 'https://longtai.org/' },
     { name: '夏川桃源', role: '只是個什麼都會一點的人類而已', logo: '/images/friends/summer.png', logoTheme: 'dark', initials: '夏', url: 'https://natsukawataoyuan.com/' },
     { name: '烤鴨', role: '來自新竹的好吃的烤鴨', logo: '/images/friends/roast-duck.jpg', logoTheme: 'light', initials: '烤', url: 'https://www.gdtw.qzz.io/' },
-    { name: 'jiaoyue', role: '焦月，一個獸控的網站', logo: '/images/friends/jiaoyue.jpg', logoTheme: 'light', initials: 'j', url: 'https://jiaoyue.gay/' },
     { name: 'littlecommandcat', role: '就是一隻貓', logo: '/images/friends/cmdcat.webp', logoTheme: 'dark', initials: 'LC', url: 'https://cmdcat.com/' },
+    { name: 'jiaoyue', role: '焦月，一個獸控的網站', logo: '/images/friends/jiaoyue.jpg', logoTheme: 'light', initials: 'j', url: 'https://jiaoyue.gay/' },
   ],
 };
 
