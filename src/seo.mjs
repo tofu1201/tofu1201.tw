@@ -138,10 +138,11 @@ export function renderSearchHead({ page = 'home', modified } = {}) {
   const details = pageDetails(page);
   const e = escapeHtml;
   const graph = page === 'home' ? homeGraph({ modified }) : learningGraph({ modified });
+  const robots = page === 'learning' ? 'noindex, follow' : 'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1';
   return `<title>${e(details.title)}</title>
   <meta name="description" content="${e(details.description)}">
   <meta name="author" content="${e(profile.name)}">
-  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+  <meta name="robots" content="${robots}">
   <link rel="canonical" href="${e(details.url)}">
   <link rel="sitemap" type="application/xml" href="${e(siteUrl('sitemap.xml'))}">
   <link rel="alternate" type="application/json" href="${e(siteUrl('profile.json'))}" title="${e(profile.name)} 公開個人資料">

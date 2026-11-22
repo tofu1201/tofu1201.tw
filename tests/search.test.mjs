@@ -137,24 +137,29 @@ test('homepage and learning page have distinct metadata and readable HTML withou
   for (const team of profile.teams) assert.ok(home.includes(escapeHtml(team.role)));
   assert.ok(learning.includes(`rel="canonical" href="${siteUrl('self')}"`));
   assert.ok(learning.includes('資訊課自主學習計畫'));
+  assert.ok(learning.includes('<meta name="robots" content="noindex, follow">'));
+  assert.ok(home.includes('<meta name="robots" content="index, follow,'));
+  assert.equal((learning.match(/name="robots"/g) || []).length, 1);
+  assert.equal(metadataHeaders()['/self']['X-Robots-Tag'], 'noindex, follow');
+  assert.equal(metadataHeaders()['/self.html']['X-Robots-Tag'], 'noindex, follow');
   assert.ok(!learning.includes('search:start'));
   assert.equal(nodeOf(learningGraph(), 'WebPage').author['@id'], siteUrl('#person'));
   assert.ok(nodeOf(learningGraph(), 'WebPage').mainEntity.about.every((topic) => topic['@type'] === 'Thing' && topic.name));
   assert.throws(() => renderLearningPage('<html><head></head></html>'), /metadata markers/);
 });
 
-test('sitemap contains only canonical pages and uses supplied content dates with XML escaping', () => {
+test('sitemap contains only indexable canonical pages and uses supplied content dates with XML escaping', () => {
   const original = { ...profile.portrait };
   try {
     profile.portrait.src = '/images/avatar.webp?size=960&quality=80';
     const home = '2026-10-23T10:00:00+08:00';
     const learning = '2026-11-07T10:00:00+08:00';
     const sitemap = metadataFiles({ home, learning }).get('sitemap.xml');
-    assert.equal((sitemap.match(/<url>/g) || []).length, 2);
+    assert.equal((sitemap.match(/<url>/g) || []).length, 1);
     assert.ok(sitemap.includes(`<loc>${siteUrl()}</loc>`));
-    assert.ok(sitemap.includes(`<loc>${siteUrl('self')}</loc>`));
+    assert.ok(!sitemap.includes(`<loc>${siteUrl('self')}</loc>`));
     assert.ok(sitemap.includes(`<lastmod>${home}</lastmod>`));
-    assert.ok(sitemap.includes(`<lastmod>${learning}</lastmod>`));
+    assert.ok(!sitemap.includes(`<lastmod>${learning}</lastmod>`));
     assert.ok(sitemap.includes('?size=960&amp;quality=80'));
     assert.ok(!sitemap.includes('404.html'));
     assert.ok(!sitemap.includes('<priority>'));
@@ -176,7 +181,8 @@ test('Markdown and JSON expose current public names, roles and contact links', (
   for (const team of profile.teams) assert.ok(readable.includes(team.role));
   assert.ok(md.includes(`mailto:${profile.email}`));
   assert.ok(md.includes('## 技術與興趣'));
-  assert.ok(files.get('llms.txt').includes(siteUrl('self')));
+  assert.ok(!files.get('llms.txt').includes(siteUrl('self')));
+  assert.ok(!files.get('robots.txt').includes('Disallow: /self'));
 });
 
 test('content dates ignore unrelated commits and omit dates for archives and shallow clones', async () => {

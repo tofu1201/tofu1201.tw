@@ -34,21 +34,21 @@ export function metadataHeaders() {
     '/profile.md': { 'Content-Type': 'text/markdown; charset=utf-8', Link: canonical },
     '/profile.json': { 'Content-Type': 'application/json; charset=utf-8', Link: canonical },
     '/llms.txt': { 'Content-Type': 'text/plain; charset=utf-8' },
+    '/self': { 'X-Robots-Tag': 'noindex, follow' },
+    '/self.html': { 'X-Robots-Tag': 'noindex, follow' },
   };
 }
 
-export function metadataFiles({ home, learning } = {}) {
+export function metadataFiles({ home } = {}) {
   const e = escapeHtml;
   const sitemapEntry = (url, modified, image) => `  <url>\n    <loc>${e(url)}</loc>${modified ? `\n    <lastmod>${e(modified)}</lastmod>` : ''}${image ? `\n    <image:image><image:loc>${e(image)}</image:loc></image:image>` : ''}\n  </url>`;
   const sitemap = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">\n` +
-    sitemapEntry(siteUrl(), home, profile.portrait.src ? siteUrl(profile.portrait.src) : null) + '\n' +
-    sitemapEntry(siteUrl('self'), learning) + '\n</urlset>\n';
+    sitemapEntry(siteUrl(), home, profile.portrait.src ? siteUrl(profile.portrait.src) : null) + '\n</urlset>\n';
   const discovery = `# ${markdown(profile.name)}（${markdown(profile.nickname)}）\n\n> ${markdown(profile.summary)}\n\n` +
     `## 個人資料\n\n` +
     `- ${link('個人網站', siteUrl())}：個人簡介、團隊、活動、友站與聯繫。\n` +
     `- ${link('完整個人資料（Markdown）', siteUrl('profile.md'))}：簡介、技術興趣、職稱與活動參與身分。\n` +
     `- ${link('個人資料（JSON）', siteUrl('profile.json'))}：與網站內容共用的公開資料。\n\n` +
-    `## 學習計畫\n\n- ${link('資訊課自主學習計畫', siteUrl('self'))}：網站開發、Python 實作、專案規劃與成果驗收。\n\n` +
     `## 聯繫\n\n${profile.socials.filter((social) => social.url).map((social) => `- ${link(social.name === 'Mail' ? profile.email : social.name, social.url)}`).join('\n')}\n`;
   const headers = Object.entries(metadataHeaders()).map(([path, values]) => `${path}\n${Object.entries(values).map(([name, value]) => `  ${name}: ${value}`).join('\n')}`).join('\n\n') + '\n';
   return new Map([
